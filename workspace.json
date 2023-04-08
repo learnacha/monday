@@ -2,7 +2,9 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "atoms": "libs/atoms",
     "client": "apps/client",
-    "client-e2e": "apps/client-e2e"
+    "client-e2e": "apps/client-e2e",
+    "molecules": "libs/molecules"
   }
 }

@@ -14,7 +14,10 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@monday/atoms": ["libs/atoms/src/index.ts"],
+      "@monday/molecules": ["libs/molecules/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
