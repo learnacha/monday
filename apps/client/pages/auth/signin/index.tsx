@@ -5,12 +5,12 @@ import {
   Header,
   LineTextLine,
 } from '@monday/atoms';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../../redux/app.hooks';
 import { useEffect, useState } from 'react';
 import SigninForm from '../../../components/signin-form/signin-form';
 import { TextLink } from '@monday/molecules';
 import {
-  selectIsUserLoggedIn,
+  selectIsSigninSuccess,
   selectIsLoading,
   selectHasUserError,
   loginUser,
@@ -21,15 +21,15 @@ const errorMessages = {
   ID_NOT_FOUND: 'Email ID not found, kindly sign up to proceed',
 };
 
-const Login = () => {
+const Signin = () => {
   const [showErrorMsg, setshowErrorMsg] = useState<
     'INVALID_EMAIL' | 'ID_NOT_FOUND' | undefined
   >(undefined);
   const router = useRouter();
-  const isUserLoggedIn = useSelector(selectIsUserLoggedIn);
-  const isLoading = useSelector(selectIsLoading);
-  const hasUserError = useSelector(selectHasUserError);
-  const dispatch = useDispatch();
+  const isSigninSuccess = useAppSelector(selectIsSigninSuccess);
+  const isLoading = useAppSelector(selectIsLoading);
+  const hasUserError = useAppSelector(selectHasUserError);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (hasUserError) setshowErrorMsg('ID_NOT_FOUND');
@@ -38,10 +38,11 @@ const Login = () => {
     };
   }, [hasUserError]);
 
-  if (isUserLoggedIn) {
-    console.log('User logged in', isUserLoggedIn);
-    router.push('/dashboard');
-  }
+  useEffect(() => {
+    if (isSigninSuccess) {
+      router.push('/dashboard');
+    }
+  }, [isSigninSuccess, router]);
 
   const onFormSubmit = (isValidForm: boolean, email: string) => {
     if (!isValidForm) {
@@ -77,7 +78,7 @@ const Login = () => {
     <>
       {renderErrorNotification()}
       <div className="p-[40px] flex flex-col items-center text-[#333333] font-Figtree">
-        <SigninForm onFormSubmit={onFormSubmit} />
+        <SigninForm onFormSubmit={onFormSubmit} isLoading={isLoading} />
         <div className="mt-[-12px] mb-8">
           <LineTextLine separatorText="Or Sign in with" />
         </div>
@@ -95,4 +96,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signin;

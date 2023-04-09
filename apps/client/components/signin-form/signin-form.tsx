@@ -4,9 +4,13 @@ import { isValidEmail } from '../../utils';
 
 type SigninFormProps = {
   onFormSubmit: (hasValidForm: boolean, email: string) => void;
+  isLoading: boolean;
 };
 
-export default function SigninForm({ onFormSubmit }: SigninFormProps) {
+export default function SigninForm({
+  onFormSubmit,
+  isLoading,
+}: SigninFormProps) {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
 
@@ -37,7 +41,10 @@ export default function SigninForm({ onFormSubmit }: SigninFormProps) {
           onEmailChange={onEmailChange}
         />
         <div className="w-full h-12 mt-[20px]">
-          <ButtonPrimary isLoading={false} onHandleSubmit={onHandleSubmit} />
+          <ButtonPrimary
+            isLoading={isLoading}
+            onHandleSubmit={onHandleSubmit}
+          />
         </div>
       </div>
     </div>

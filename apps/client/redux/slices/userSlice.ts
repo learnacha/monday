@@ -5,7 +5,7 @@ import { RootState } from '../store/store';
 
 interface UserState {
   users: string[];
-  isLoggedIn: boolean;
+  isSigninSuccess: boolean;
   loggedInUser: string;
   isError: boolean;
   isLoading: boolean;
@@ -15,7 +15,7 @@ interface UserState {
 /* Setting the initial state of the user slice. */
 const initialState: UserState = {
   users: [],
-  isLoggedIn: false,
+  isSigninSuccess: false,
   loggedInUser: '',
   isError: false,
   isLoading: false,
@@ -42,7 +42,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     logoutUser: (state) => {
-      state.isLoggedIn = false;
+      state.isSigninSuccess = false;
       state.loggedInUser = '';
       state.isError = false;
     },
@@ -50,11 +50,11 @@ export const userSlice = createSlice({
       console.log(action.payload);
 
       if (state.users.includes(action.payload)) {
-        state.isLoggedIn = true;
+        state.isSigninSuccess = true;
         state.loggedInUser = action.payload;
         state.isError = false;
       } else {
-        state.isLoggedIn = false;
+        state.isSigninSuccess = false;
         state.loggedInUser = '';
         state.isError = true;
       }
@@ -95,11 +95,11 @@ export const {
 } = userSlice.actions;
 
 export const selectLoggedInUser = (state: RootState) => state.user.loggedInUser;
-export const selectIsUserLoggedIn = (state: RootState) => state.user.isLoggedIn;
+export const selectIsSigninSuccess = (state: RootState) =>
+  state.user.isSigninSuccess;
 export const selectIsLoading = (state: RootState) => state.user.isLoading;
 export const selectHasUserError = (state: RootState) => state.user.isError;
 export const selectIsSignupSuccess = (state: RootState) =>
   state.user.isSignupSuccess;
-export const resetSignupSuccess = (state: RootState) =>
-  state.user.isSignupSuccess;
+
 export default userSlice.reducer;

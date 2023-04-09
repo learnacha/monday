@@ -27,9 +27,7 @@ const SignUp = () => {
   useEffect(() => {
     if (isSignupSuccess) {
       setDisplaySuccess(true);
-      setTimeout(() => {
-        router.push('/auth/signin');
-      }, 2000);
+      router.push('/auth/signin');
     }
   }, [isSignupSuccess, router]);
 
