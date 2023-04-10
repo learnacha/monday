@@ -19,7 +19,7 @@ export const InputEmail = ({
   onEmailChange,
   onFocusCSS,
   placeholderText,
-  showErrorEmail: isInvalidEmail = false,
+  showErrorEmail: isInvalidEmail,
 }: InputEmailProps) => {
   const [cssClass, setCssClass] = useState('');
 

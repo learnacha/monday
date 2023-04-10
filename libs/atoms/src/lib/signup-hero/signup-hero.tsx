@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const SignupHero = () => {
   return (
     <div className="mt-0 rounded-none overflow-hidden w-[40%] min-w-0 bg-white flex justify-center items-center">

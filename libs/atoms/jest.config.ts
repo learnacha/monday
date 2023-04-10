@@ -9,5 +9,6 @@ export default {
     ],
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
   coverageDirectory: '../../coverage/libs/atoms',
 };

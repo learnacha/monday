@@ -12,7 +12,6 @@ export default function SigninForm({
   isLoading,
 }: SigninFormProps) {
   const [email, setEmail] = useState('');
-  const [emailError, setEmailError] = useState('');
 
   const onEmailChange = (inputEmail: string) => {
     setEmail(inputEmail);

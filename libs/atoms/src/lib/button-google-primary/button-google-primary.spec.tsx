@@ -1,10 +1,20 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { ButtonGooglePrimary } from './button-google-primary';
 
-import ButtonGooglePrimary from './button-google-primary';
+describe('ButtonGooglePrimary component', () => {
+  test('renders button with text "Continue with Google"', () => {
+    render(<ButtonGooglePrimary />);
+    const buttonText = screen.getByText('Continue with Google');
+    expect(buttonText).toBeInTheDocument();
+  });
 
-describe('ButtonGooglePrimary', () => {
-  it('should render successfully', () => {
-    const { baseElement } = render(<ButtonGooglePrimary />);
-    expect(baseElement).toBeTruthy();
+  test('renders button with Google logo', () => {
+    render(<ButtonGooglePrimary />);
+    const googleLogo = screen.getByAltText('Continue with Google');
+    expect(googleLogo).toBeInTheDocument();
+    expect(googleLogo).toHaveAttribute(
+      'src',
+      'https://cdn.monday.com/images/google-icon.svg'
+    );
   });
 });

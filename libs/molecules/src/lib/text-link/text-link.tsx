@@ -18,11 +18,15 @@ export const TextLink = ({
 
   return (
     <div
+      data-testid={fontThickness}
       className={`font-Figtree text-[#323338] text-base text-center ${fontThickness}`}
     >
       {text}
       {` `}
-      <div className={`inline-block ml-2 ${linkColor} `}>
+      <div
+        className={`inline-block ml-2 ${linkColor} `}
+        data-testid={linkColor}
+      >
         <Link
           href={linkUrl}
           style={{

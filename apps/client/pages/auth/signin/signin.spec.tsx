@@ -40,6 +40,11 @@ describe('Given Signin Page', () => {
   it('WHEN login page is visited THEN load expected controls in it', async () => {
     renderWithProviders(<Signin />);
 
+    //logo
+    expect(
+      screen.getByRole('img', { name: 'Monday logo' })
+    ).toBeInTheDocument();
+
     // heading
     expect(
       screen.getByRole('heading', { name: /log in to your account/i })

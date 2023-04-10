@@ -26,13 +26,9 @@ const initialState: UserState = {
 export const addUserAsync = createAsyncThunk(
   'user/addUserAsync',
   async (user: string) => {
-    const response = await axios.post(
-      'https://jsonplaceholder.typicode.com/users',
-      {
-        name: user,
-      }
-    );
-    return response.data;
+    axios.post('https://jsonplaceholder.typicode.com/users', {
+      name: user,
+    });
   }
 );
 
@@ -47,8 +43,6 @@ export const userSlice = createSlice({
       state.isError = false;
     },
     loginUser: (state, action: PayloadAction<string>) => {
-      console.log(action.payload);
-
       if (state.users.includes(action.payload)) {
         state.isSigninSuccess = true;
         state.loggedInUser = action.payload;
@@ -59,40 +53,25 @@ export const userSlice = createSlice({
         state.isError = true;
       }
     },
-    clearError: (state) => {
-      state.isError = false;
-    },
     addUser: (state, action: PayloadAction<string>) => {
       state.users.push(action.payload);
       state.isError = false;
       state.isSignupSuccess = true;
+      state.isLoading = false;
     },
     clearSignUpSuccess: (state) => {
       state.isSignupSuccess = false;
-      console.log(state.isSignupSuccess);
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(addUserAsync.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(addUserAsync.fulfilled, (state, action) => {
-        state.isLoading = false;
-      })
-      .addCase(addUserAsync.rejected, (state) => {
-        state.isLoading = false;
-      });
+    builder.addCase(addUserAsync.pending, (state) => {
+      state.isLoading = true;
+    });
   },
 });
 
-export const {
-  addUser,
-  loginUser,
-  logoutUser,
-  clearError,
-  clearSignUpSuccess,
-} = userSlice.actions;
+export const { addUser, loginUser, logoutUser, clearSignUpSuccess } =
+  userSlice.actions;
 
 export const selectLoggedInUser = (state: RootState) => state.user.loggedInUser;
 export const selectIsSigninSuccess = (state: RootState) =>

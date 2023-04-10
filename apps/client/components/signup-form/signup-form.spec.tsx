@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router';
 import { fireEvent, screen } from '@testing-library/react';
 
-// We're using our own custom render function and not RTL's render.
-import { renderWithProviders } from '../../../test/test-utils';
-import { appServer } from '../../../test/server';
-import Signup from './index';
+import SignupForm from './signup-form';
+import { renderWithProviders } from '../../test/test-utils';
+import { appServer } from '../../test/server';
 
 const server = appServer();
 
@@ -26,7 +25,7 @@ jest.mock('next/router', () => {
   };
 });
 
-describe('Given Signup Page', () => {
+describe('Given Signin Form', () => {
   // Enable API mocking before tests.
   beforeAll(() => server.listen());
 
@@ -35,9 +34,8 @@ describe('Given Signup Page', () => {
 
   // Disable API mocking after the tests are done.
   afterAll(() => server.close());
-
-  it('WHEN signup page is visited THEN load expected controls in it', async () => {
-    renderWithProviders(<Signup />);
+  it('WHEN SigninForm requested THEN the relevant controls rendered successfully', () => {
+    renderWithProviders(<SignupForm />);
 
     expect(
       screen.getByRole('heading', { name: /welcome to monday.com/i })
@@ -46,11 +44,10 @@ describe('Given Signup Page', () => {
     expect(
       screen.getByRole('button', { name: 'Continue' })
     ).toBeInTheDocument();
-    expect(screen.getByText('Log in')).toBeInTheDocument();
   });
 
   it('WHEN invalid email entered THEN display relevant error notification', async () => {
-    renderWithProviders(<Signup />);
+    renderWithProviders(<SignupForm />);
 
     const emailInput = screen.getByPlaceholderText('name@company.com');
     const signupButton = screen.getByRole('button', { name: 'Continue' });
@@ -66,7 +63,7 @@ describe('Given Signup Page', () => {
   });
 
   it('WHEN valid email entered THEN register and redirect to login page', async () => {
-    renderWithProviders(<Signup />);
+    renderWithProviders(<SignupForm />);
 
     const emailInput = screen.getByPlaceholderText('name@company.com');
     const signupButton = screen.getByRole('button', { name: 'Continue' });

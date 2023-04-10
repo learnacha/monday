@@ -1,5 +1,3 @@
-import React from 'react';
-
 type ErrorToastProps = {
   msg: string;
 };
@@ -14,5 +12,3 @@ export const ErrorToast = ({ msg }: ErrorToastProps) => {
     </div>
   );
 };
-
-export default ErrorToast;

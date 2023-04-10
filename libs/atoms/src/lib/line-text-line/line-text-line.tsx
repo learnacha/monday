@@ -18,7 +18,7 @@ export const LineTextLine = ({
 
   return (
     <div className="grid gap-[8px] grid-cols-[1fr,auto,1fr] mx-4">
-      <div className={separatorLeft} />
+      <div className={separatorLeft} data-testid="line-text-line" />
       <div className="text-base font-light leading-6">{separatorText}</div>
       <div className={separatorRight} />
     </div>

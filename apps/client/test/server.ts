@@ -10,8 +10,6 @@ export const handlers = [
   }),
 ];
 
-const server = setupServer(...handlers);
-
 export const appServer = (
   customHandlers: RestHandler<MockedRequest<DefaultBodyType>>[] = []
 ): SetupServer => {

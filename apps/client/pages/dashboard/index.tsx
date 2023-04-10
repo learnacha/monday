@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectLoggedInUser, logoutUser } from '../../redux/slices/userSlice';
@@ -11,18 +12,23 @@ export default function Dashboard() {
   const handleLogout = () => {
     dispatch(logoutUser());
   };
-
-  if (loggedInUser === '') router.push('/auth/signin');
+  useEffect(() => {
+    if (!loggedInUser) {
+      router.push('/auth/signin');
+    }
+  }, [loggedInUser, router]);
 
   return (
-    <div>
-      <Header />
-      <h1 className="mt-8 text-3xl font-bold text-center">
-        Hello {loggedInUser}
-      </h1>
-      <div className="h-12 mx-auto mt-16 w-96">
-        <ButtonPrimary onHandleSubmit={handleLogout} text="Logout" />
+    loggedInUser && (
+      <div>
+        <Header />
+        <h1 className="mt-8 text-3xl font-bold text-center">
+          Hello {loggedInUser}
+        </h1>
+        <div className="h-12 mx-auto mt-16 w-96">
+          <ButtonPrimary onHandleSubmit={handleLogout} text="Logout" />
+        </div>
       </div>
-    </div>
+    )
   );
 }
