@@ -1,3 +1,4 @@
+export * from './lib/signup-loader/signup-loader';
 export * from './lib/signup-hero/signup-hero';
 export * from './lib/line-text-line/line-text-line';
 export * from './lib/input-email/input-email';
