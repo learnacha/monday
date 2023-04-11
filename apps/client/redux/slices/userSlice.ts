@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { RootState } from '../store/store';
 
@@ -22,13 +21,21 @@ const initialState: UserState = {
   isSignupSuccess: false,
 };
 
-/* Creating an async thunk that will be used to add a user to the users array. */
-export const addUserAsync = createAsyncThunk(
-  'user/addUserAsync',
+export const addUser = createAsyncThunk(
+  'user/addUser',
   async (user: string) => {
-    axios.post('https://jsonplaceholder.typicode.com/users', {
+    await axios.post('https://jsonplaceholder.typicode.com/users', {
       name: user,
     });
+    return user;
+  }
+);
+
+export const getUser = createAsyncThunk(
+  'user/getUser',
+  async (user: string) => {
+    await axios.get('https://jsonplaceholder.typicode.com/users/1');
+    return user;
   }
 );
 
@@ -42,43 +49,53 @@ export const userSlice = createSlice({
       state.loggedInUser = '';
       state.isError = false;
     },
-    loginUser: (state, action: PayloadAction<string>) => {
-      if (state.users.includes(action.payload)) {
-        state.isSigninSuccess = true;
-        state.loggedInUser = action.payload;
-        state.isError = false;
-      } else {
-        state.isSigninSuccess = false;
-        state.loggedInUser = '';
-        state.isError = true;
-      }
-    },
-    addUser: (state, action: PayloadAction<string>) => {
-      state.users.push(action.payload);
-      state.isError = false;
-      state.isSignupSuccess = true;
-      state.isLoading = false;
-    },
     clearSignUpSuccess: (state) => {
       state.isSignupSuccess = false;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(addUserAsync.pending, (state) => {
-      state.isLoading = true;
-    });
+    builder
+      .addCase(addUser.pending, (state, action) => {
+        console.log(action.payload);
+        state.isLoading = true;
+      })
+      .addCase(addUser.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.users.push(action.payload);
+        state.isError = false;
+        state.isSignupSuccess = true;
+        state.isLoading = false;
+      })
+      .addCase(addUser.rejected, (state, action) => {
+        console.log(action.payload);
+        state.isLoading = false;
+      })
+      .addCase(getUser.pending, (state, action) => {
+        console.log(action.payload);
+        state.isLoading = true;
+      })
+      .addCase(getUser.fulfilled, (state, action) => {
+        console.log(action.payload);
+        if (state.users.includes(action.payload)) {
+          state.isSigninSuccess = true;
+          state.loggedInUser = action.payload;
+          state.isError = false;
+        } else {
+          state.isSigninSuccess = false;
+          state.loggedInUser = '';
+          state.isError = true;
+        }
+        state.isLoading = false;
+      })
+      .addCase(getUser.rejected, (state, action) => {
+        console.log(action.payload);
+        state.isLoading = false;
+      });
   },
 });
 
-export const { addUser, loginUser, logoutUser, clearSignUpSuccess } =
-  userSlice.actions;
+export const { logoutUser, clearSignUpSuccess } = userSlice.actions;
 
-export const selectLoggedInUser = (state: RootState) => state.user.loggedInUser;
-export const selectIsSigninSuccess = (state: RootState) =>
-  state.user.isSigninSuccess;
-export const selectIsLoading = (state: RootState) => state.user.isLoading;
-export const selectHasUserError = (state: RootState) => state.user.isError;
-export const selectIsSignupSuccess = (state: RootState) =>
-  state.user.isSignupSuccess;
+export const selectUser = (state: RootState) => state.user;
 
 export default userSlice.reducer;

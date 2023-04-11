@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectLoggedInUser, logoutUser } from '../../redux/slices/userSlice';
+import { useAppSelector, useAppDispatch } from '../../redux/app.hooks';
+import { selectUser, logoutUser } from '../../redux/slices/userSlice';
 import { ButtonPrimary, Header } from '@monday/atoms';
 
 export default function Dashboard() {
   const router = useRouter();
-  const loggedInUser = useSelector(selectLoggedInUser);
-  const dispatch = useDispatch();
+  const { loggedInUser } = useAppSelector(selectUser);
+  const dispatch = useAppDispatch();
 
   const handleLogout = () => {
     dispatch(logoutUser());

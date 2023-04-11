@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
 import { SignupHero, SignupLoader } from '@monday/atoms';
-import { selectIsSignupSuccess } from '../../../redux/slices/userSlice';
+import { selectUser } from '../../../redux/slices/userSlice';
 import { useEffect, useState } from 'react';
 import SignupForm from '../../../components/signup-form/signup-form';
+import { useAppSelector } from '../../../redux/app.hooks';
 
 const SignUp = () => {
   const router = useRouter();
-  const isSignupSuccess = useSelector(selectIsSignupSuccess);
+  const { isSignupSuccess, isLoading } = useAppSelector(selectUser);
   const [displayLoader, setDisplayLoader] = useState(true);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const SignUp = () => {
   return (
     <>
       <div className="flex h-screen overflow-hidden">
-        {displayLoader ? (
+        {displayLoader || isLoading ? (
           <SignupLoader />
         ) : (
           <>

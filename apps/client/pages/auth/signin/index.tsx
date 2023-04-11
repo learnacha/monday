@@ -9,12 +9,7 @@ import { useAppSelector, useAppDispatch } from '../../../redux/app.hooks';
 import { useEffect, useState } from 'react';
 import SigninForm from '../../../components/signin-form/signin-form';
 import { TextLink } from '@monday/molecules';
-import {
-  selectIsSigninSuccess,
-  selectIsLoading,
-  selectHasUserError,
-  loginUser,
-} from '../../../redux/slices/userSlice';
+import { selectUser, getUser } from '../../../redux/slices/userSlice';
 
 const errorMessages = {
   INVALID_EMAIL: 'Invalid email format, kindly enter the valid email address',
@@ -26,9 +21,11 @@ const Signin = () => {
     'INVALID_EMAIL' | 'ID_NOT_FOUND' | undefined
   >(undefined);
   const router = useRouter();
-  const isSigninSuccess = useAppSelector(selectIsSigninSuccess);
-  const isLoading = useAppSelector(selectIsLoading);
-  const hasUserError = useAppSelector(selectHasUserError);
+  const {
+    isSigninSuccess,
+    isLoading,
+    isError: hasUserError,
+  } = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -49,7 +46,7 @@ const Signin = () => {
       setshowErrorMsg('INVALID_EMAIL');
     } else {
       setshowErrorMsg(undefined);
-      dispatch(loginUser(email));
+      dispatch(getUser(email));
     }
   };
 

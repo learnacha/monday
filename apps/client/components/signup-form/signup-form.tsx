@@ -1,8 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../redux/app.hooks';
 import {
   addUser,
-  addUserAsync,
-  selectIsSignupSuccess,
+  selectUser,
   clearSignUpSuccess,
 } from '../../redux/slices/userSlice';
 import { useRouter } from 'next/router';
@@ -24,13 +23,12 @@ const errorBorderClass = 'outline-none border-[#d83a52] ring-0 ring-[#d83a52]';
 export default function SignupForm() {
   const [emailError, setEmailError] = useState(false);
   const router = useRouter();
-  const dispatch = useDispatch();
-  const isSignupSuccess = useSelector(selectIsSignupSuccess);
+  const dispatch = useAppDispatch();
+  const { isSignupSuccess } = useAppSelector(selectUser);
   const [email, setEmail] = useState('');
 
   const onFormSubmit = (email: string) => {
-    dispatch(addUser(email));
-    dispatch(addUserAsync(email) as any);
+    dispatch(addUser(email) as any);
   };
 
   const onEmailChange = (inputEmail: string) => {
