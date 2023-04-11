@@ -1,14 +1,14 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ErrorToast } from './error-toast';
+import { ComponentStory, ComponentMeta, Story } from '@storybook/react';
+import { ErrorToast, ErrorToastProps } from './error-toast';
 
 export default {
   component: ErrorToast,
   title: 'ErrorToast',
 } as ComponentMeta<typeof ErrorToast>;
 
-const Template: ComponentStory<typeof ErrorToast> = (args) => (
-  <ErrorToast {...args} />
-);
+const Template: Story<ErrorToastProps> = (args) => <ErrorToast {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {};
+export const Default = Template.bind({});
+Default.args = {
+  msg: 'Error! Something went wrong.',
+};

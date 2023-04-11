@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-type TextLinkProps = {
+export type TextLinkProps = {
   text: string;
   linkText: string;
   linkUrl: string;

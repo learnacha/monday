@@ -1,4 +1,4 @@
-type ErrorToastProps = {
+export type ErrorToastProps = {
   msg: string;
 };
 

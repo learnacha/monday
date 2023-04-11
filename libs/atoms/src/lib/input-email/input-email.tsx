@@ -6,7 +6,7 @@ const defaultBorder = 'outline-none border-[#c3c6d4] ring-0 ring-[#c3c6d4]';
 const defaultClass =
   'w-full h-[40px] px-4 py-2 text-[#555555] font-extralight border border-solid rounded';
 
-type InputEmailProps = {
+export type InputEmailProps = {
   additionalCSS?: string;
   onEmailChange: (email: string) => void;
   onFocusCSS?: string;

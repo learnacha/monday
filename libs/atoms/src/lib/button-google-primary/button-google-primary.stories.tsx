@@ -7,7 +7,7 @@ export default {
 } as ComponentMeta<typeof ButtonGooglePrimary>;
 
 const Template: ComponentStory<typeof ButtonGooglePrimary> = (args) => (
-  <ButtonGooglePrimary {...args} />
+  <ButtonGooglePrimary />
 );
 
 export const Primary = Template.bind({});
