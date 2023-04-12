@@ -1,3 +1,31 @@
+# Installation Steps
+
+1. Download the project
+2. npm install
+3. npm run start
+4. launch url at https://localhost:4200
+
+# Steps to test
+
+1. Navigate to https://localhost:4200
+2. The page redirects to Login page
+3. enter valid email, the page notifies the user not registered
+4. click sign up
+5. register the email id, on submit, the page redirects to login page
+6. enter the email id on sign in page
+7. view dashboard
+
+# Whats implemented and not implemented
+
+1. The implementation focused on the matching requirement
+2. Additional features are not implemented like responsiveness and accessibility etc
+3. The mock API are called to simulate real life api implementation however the code does not make use of it
+4. NextJS Link and Images are not implemented as they were not rendered as expected when read from component library
+5. The component follows close to Atomic design pattern
+6. The code also implements patterns like compound pattern, gaurd pattern etc.
+7. The unit test cases are written in Given, When and Then format
+8. Last but not least, the below requirements are implemented except e2e tests
+
 # Requirements
 
 ## Login page of monday.com
