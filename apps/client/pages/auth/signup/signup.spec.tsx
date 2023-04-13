@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 // We're using our own custom render function and not RTL's render.
 import { renderWithProviders } from '../../../test/test-utils';
@@ -46,13 +46,9 @@ describe('Given Signup Page', () => {
   it('WHEN signup page is visited THEN load expected controls in it', async () => {
     renderWithProviders(<Signup />);
 
-    expect(
-      await screen.findByRole('heading', { name: /welcome to monday.com/i })
-    ).toBeInTheDocument();
+    expect(await screen.findByRole('heading', { name: /welcome to monday.com/i })).toBeInTheDocument();
     expect(screen.getByPlaceholderText('name@company.com')).toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: 'Continue' })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Continue' })).toBeInTheDocument();
     expect(screen.getByText('Log in')).toBeInTheDocument();
   });
 
@@ -84,7 +80,6 @@ describe('Given Signup Page', () => {
     fireEvent.change(emailInput, { target: { value: 'abc@gmail.com' } });
     fireEvent.click(signupButton);
 
-    const emailInput1 = await screen.findByPlaceholderText('name@company.com');
-    expect(useRouter().push).toBeCalledWith('/auth/signin');
+    await waitFor(() => expect(useRouter().push).toBeCalledWith('/auth/signin'));
   });
 });

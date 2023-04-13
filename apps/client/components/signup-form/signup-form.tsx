@@ -1,22 +1,12 @@
 import { useAppSelector, useAppDispatch } from '../../redux/app.hooks';
-import {
-  addUser,
-  selectUser,
-  clearSignUpSuccess,
-} from '../../redux/slices/userSlice';
+import { addUser, selectUser, clearSignUpSuccess } from '../../redux/slices/userSlice';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import {
-  InputEmail,
-  ButtonGooglePrimary,
-  LineTextLine,
-  ButtonSecondary,
-} from '@monday/atoms';
+import { InputEmail, ButtonGooglePrimary, LineTextLine, ButtonSecondary } from '@monday/atoms';
 import { TextLink } from '@monday/molecules';
 import { isValidEmail } from '../../utils';
 
-const hoverBlackClass =
-  'hover:outline-none hover:border-[#323338] hover:ring-0 hover:ring-[#323338]';
+const hoverBlackClass = 'hover:outline-none hover:border-[#323338] hover:ring-0 hover:ring-[#323338]';
 const focusBorderClass = 'outline-none border-[#0071ea] ring-0 ring-[#0071ea]';
 const errorBorderClass = 'outline-none border-[#d83a52] ring-0 ring-[#d83a52]';
 
@@ -28,7 +18,7 @@ export default function SignupForm() {
   const [email, setEmail] = useState('');
 
   const onFormSubmit = (email: string) => {
-    dispatch(addUser(email) as any);
+    dispatch(addUser(email));
   };
 
   const onEmailChange = (inputEmail: string) => {
@@ -82,11 +72,7 @@ export default function SignupForm() {
       </div>
       {renderSignupForm()}
       <div className="flex justify-center mt-8 w-[400px]">
-        <TextLink
-          text={`Already have an account?`}
-          linkText="Log in"
-          linkUrl="/auth/signin"
-        />
+        <TextLink text={`Already have an account?`} linkText="Log in" linkUrl="/auth/signin" />
       </div>
     </div>
   );
