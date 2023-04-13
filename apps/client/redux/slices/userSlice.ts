@@ -56,26 +56,18 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addUser.pending, (state, action) => {
-        console.log(action.payload);
         state.isLoading = true;
       })
       .addCase(addUser.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.users.push(action.payload);
         state.isError = false;
         state.isSignupSuccess = true;
         state.isLoading = false;
       })
-      .addCase(addUser.rejected, (state, action) => {
-        console.log(action.payload);
-        state.isLoading = false;
-      })
       .addCase(getUser.pending, (state, action) => {
-        console.log(action.payload);
         state.isLoading = true;
       })
       .addCase(getUser.fulfilled, (state, action) => {
-        console.log(action.payload);
         if (state.users.includes(action.payload)) {
           state.isSigninSuccess = true;
           state.loggedInUser = action.payload;
@@ -85,10 +77,6 @@ export const userSlice = createSlice({
           state.loggedInUser = '';
           state.isError = true;
         }
-        state.isLoading = false;
-      })
-      .addCase(getUser.rejected, (state, action) => {
-        console.log(action.payload);
         state.isLoading = false;
       });
   },

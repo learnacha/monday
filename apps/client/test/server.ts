@@ -5,7 +5,10 @@ import { SetupServer, setupServer } from 'msw/node';
 // and return the response 'John Smith' after 150ms
 // when receiving a get request to the `/api/user` endpoint
 export const handlers = [
-  rest.get('https://jsonplaceholder.typicode.com/users', (req, res, ctx) => {
+  rest.get('https://jsonplaceholder.typicode.com/users/1', (req, res, ctx) => {
+    return res(ctx.json('John Smith'), ctx.delay(150));
+  }),
+  rest.post('https://jsonplaceholder.typicode.com/users', (req, res, ctx) => {
     return res(ctx.json('John Smith'), ctx.delay(150));
   }),
 ];

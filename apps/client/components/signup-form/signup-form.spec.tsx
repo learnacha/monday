@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 import SignupForm from './signup-form';
 import { renderWithProviders } from '../../test/test-utils';
@@ -74,6 +74,8 @@ describe('Given Signin Form', () => {
     fireEvent.change(emailInput, { target: { value: 'abc@gmail.com' } });
     fireEvent.click(signupButton);
 
-    expect(useRouter().push).toBeCalledWith('/auth/signin');
+    await waitFor(() =>
+      expect(useRouter().push).toBeCalledWith('/auth/signin')
+    );
   });
 });

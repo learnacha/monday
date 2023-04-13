@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
 
 // We're using our own custom render function and not RTL's render.
 import { renderWithProviders } from '../../../test/test-utils';
@@ -97,13 +97,13 @@ describe('Given Signin Page', () => {
     fireEvent.click(signinButton);
 
     // Invalid email format, kindly enter the valid email address
-    const alertText = screen.getByText(
+    const alertText = await screen.findByText(
       'Email ID not found, kindly sign up to proceed'
     );
     expect(alertText).toBeInTheDocument();
   });
 
-  test('WHEN entered email was registered THEN validate and redirect to dashboard', async () => {
+  it('WHEN entered email was registered THEN validate and redirect to dashboard', async () => {
     const preloadedState: RootState = {
       user: {
         users: ['abc@gmail.com'],
@@ -125,6 +125,31 @@ describe('Given Signin Page', () => {
     fireEvent.change(emailInput, { target: { value: 'abc@gmail.com' } });
     fireEvent.click(signinButton);
 
-    expect(useRouter().push).toBeCalledWith('/dashboard');
+    await waitFor(() => expect(useRouter().push).toBeCalledWith('/dashboard'));
+  });
+
+  it('WHEN entered email was registered THEN validate and redirect to dashboard', async () => {
+    const preloadedState: RootState = {
+      user: {
+        users: ['abc@gmail.com'],
+        isSigninSuccess: false,
+        loggedInUser: '',
+        isError: false,
+        isLoading: false,
+        isSignupSuccess: false,
+      },
+    };
+    renderWithProviders(<Signin />, { preloadedState });
+
+    const emailInput = screen.getByPlaceholderText('Example@company.com');
+    const signinButton = screen.getByRole('button', { name: /next/i });
+
+    expect(emailInput).toBeInTheDocument();
+    expect(signinButton).toBeInTheDocument();
+
+    fireEvent.change(emailInput, { target: { value: 'abc@gmail.com' } });
+    fireEvent.click(signinButton);
+
+    await waitFor(() => expect(useRouter().push).toBeCalledWith('/dashboard'));
   });
 });

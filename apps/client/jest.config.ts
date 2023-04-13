@@ -8,6 +8,6 @@ export default {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory: '../../coverage/apps/client',
-  coveragePathIgnorePatterns: ['/test/'],
+  coveragePathIgnorePatterns: ['/test/', '/libs'],
   setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
 };

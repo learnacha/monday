@@ -36,11 +36,18 @@ describe('Given Signup Page', () => {
   // Disable API mocking after the tests are done.
   afterAll(() => server.close());
 
+  it('renders the correct logo source', () => {
+    const { getByAltText } = renderWithProviders(<Signup />);
+    expect(getByAltText('signup background').getAttribute('src')).toEqual(
+      'https://dapulse-res.cloudinary.com/image/upload/monday_platform/signup/signup-background.png'
+    );
+  });
+
   it('WHEN signup page is visited THEN load expected controls in it', async () => {
     renderWithProviders(<Signup />);
 
     expect(
-      screen.getByRole('heading', { name: /welcome to monday.com/i })
+      await screen.findByRole('heading', { name: /welcome to monday.com/i })
     ).toBeInTheDocument();
     expect(screen.getByPlaceholderText('name@company.com')).toBeInTheDocument();
     expect(
@@ -52,7 +59,7 @@ describe('Given Signup Page', () => {
   it('WHEN invalid email entered THEN display relevant error notification', async () => {
     renderWithProviders(<Signup />);
 
-    const emailInput = screen.getByPlaceholderText('name@company.com');
+    const emailInput = await screen.findByPlaceholderText('name@company.com');
     const signupButton = screen.getByRole('button', { name: 'Continue' });
 
     expect(emailInput).toBeInTheDocument();
@@ -68,7 +75,7 @@ describe('Given Signup Page', () => {
   it('WHEN valid email entered THEN register and redirect to login page', async () => {
     renderWithProviders(<Signup />);
 
-    const emailInput = screen.getByPlaceholderText('name@company.com');
+    const emailInput = await screen.findByPlaceholderText('name@company.com');
     const signupButton = screen.getByRole('button', { name: 'Continue' });
 
     expect(emailInput).toBeInTheDocument();
@@ -77,6 +84,7 @@ describe('Given Signup Page', () => {
     fireEvent.change(emailInput, { target: { value: 'abc@gmail.com' } });
     fireEvent.click(signupButton);
 
+    const emailInput1 = await screen.findByPlaceholderText('name@company.com');
     expect(useRouter().push).toBeCalledWith('/auth/signin');
   });
 });
