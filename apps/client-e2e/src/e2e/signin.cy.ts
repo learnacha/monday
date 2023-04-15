@@ -13,7 +13,7 @@ describe('GIVEN Login page', () => {
   it('WHEN login page requested THEN render required controls', () => {
     cy.get('img[alt="Monday logo"]').should('be.visible');
     cy.contains('Log in to your account').should('be.visible');
-    cy.get('input[type="email"]').should('be.visible');
+    cy.email().should('be.visible');
     cy.get('button:contains("Next ")').should('be.visible');
     cy.get('button:contains("Google")').should('be.visible');
     cy.get(`a[href="${signupUrl}"]`).should('be.visible');
@@ -44,12 +44,15 @@ describe('GIVEN Login page', () => {
     cy.get('button').first().click();
     cy.contains('Email ID not found, kindly sign up to proceed');
 
+    cy.get(`a[href="${signupUrl}"]`).should('be.visible').click();
+    cy.contains('Welcome to monday.com').should('be.visible');
     // eslint-disable-next-line cypress/unsafe-to-chain-command
     cy.email().type(validEmail).should('have.value', validEmail);
     cy.get('button:contains("Continue")').eq(1).click();
 
+    cy.contains('Log in to your account').should('be.visible');
     // eslint-disable-next-line cypress/unsafe-to-chain-command
-    cy.get('input[type="email"]').type(validEmail).should('have.value', validEmail);
+    cy.email().type(validEmail).should('have.value', validEmail);
     cy.get('button:contains("Next")').click();
     cy.contains(`Hello ${validEmail}`);
   });

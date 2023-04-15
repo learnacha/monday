@@ -12,15 +12,15 @@ const errorMessages = {
 };
 
 const Signin = () => {
-  const [showErrorMsg, setshowErrorMsg] = useState<'INVALID_EMAIL' | 'ID_NOT_FOUND' | undefined>(undefined);
+  const [showErrorMsg, setShowErrorMsg] = useState<'INVALID_EMAIL' | 'ID_NOT_FOUND' | undefined>(undefined);
   const router = useRouter();
   const { isSigninSuccess, isLoading, isError: hasUserError } = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (hasUserError) setshowErrorMsg('ID_NOT_FOUND');
+    setShowErrorMsg(hasUserError ? 'ID_NOT_FOUND' : undefined);
     return () => {
-      setshowErrorMsg(undefined);
+      setShowErrorMsg(undefined);
     };
   }, [hasUserError]);
 
@@ -32,9 +32,9 @@ const Signin = () => {
 
   const onFormSubmit = (isValidForm: boolean, email: string) => {
     if (!isValidForm) {
-      setshowErrorMsg('INVALID_EMAIL');
+      setShowErrorMsg('INVALID_EMAIL');
     } else {
-      setshowErrorMsg(undefined);
+      setShowErrorMsg(undefined);
       dispatch(getUser(email));
     }
   };

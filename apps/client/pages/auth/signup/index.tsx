@@ -23,18 +23,16 @@ const SignUp = () => {
   }, [isSignupSuccess, router]);
 
   return (
-    <>
-      <div className="flex h-screen overflow-hidden">
-        {displayLoader || isLoading ? (
-          <SignupLoader />
-        ) : (
-          <>
-            <SignupForm />
-            <SignupHero />
-          </>
-        )}
-      </div>
-    </>
+    <div className="flex h-screen overflow-hidden">
+      {displayLoader || isLoading ? (
+        <SignupLoader />
+      ) : (
+        <>
+          <SignupForm />
+          <SignupHero />
+        </>
+      )}
+    </div>
   );
 };
 

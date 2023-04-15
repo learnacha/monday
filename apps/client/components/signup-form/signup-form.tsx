@@ -17,19 +17,16 @@ export default function SignupForm() {
   const { isSignupSuccess } = useAppSelector(selectUser);
   const [email, setEmail] = useState('');
 
-  const onFormSubmit = (email: string) => {
-    dispatch(addUser(email));
-  };
-
-  const onEmailChange = (inputEmail: string) => {
+  const handleEmailChange = (inputEmail: string) => {
     setEmail(inputEmail);
   };
 
-  const onHandleSubmit = () => {
+  const handleSubmit = () => {
     if (!isValidEmail(email)) {
       setEmailError(true);
     } else {
-      onFormSubmit(email);
+      setEmailError(false);
+      dispatch(addUser(email));
     }
   };
 
@@ -38,13 +35,13 @@ export default function SignupForm() {
       <form>
         <InputEmail
           placeholderText="name@company.com"
-          onEmailChange={onEmailChange}
+          onEmailChange={handleEmailChange}
           showErrorEmail={emailError}
           onFocusCSS={`${hoverBlackClass}
             ${emailError ? errorBorderClass : focusBorderClass}`}
           additionalCSS={emailError ? errorBorderClass : hoverBlackClass}
         />
-        <ButtonSecondary onHandleSubmit={onHandleSubmit} />
+        <ButtonSecondary onHandleSubmit={handleSubmit} />
       </form>
     </div>
   );

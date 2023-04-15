@@ -4,12 +4,8 @@ type ButtonPrimaryProps = {
   text?: string;
 };
 
-export const ButtonPrimary = ({
-  isLoading = false,
-  onHandleSubmit,
-  text,
-}: ButtonPrimaryProps) => {
-  const loadSpinnner = () => (
+export const ButtonPrimary = ({ isLoading = false, onHandleSubmit, text }: ButtonPrimaryProps) => {
+  const loadSpinner = () => (
     <div
       className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-white rounded-full"
       role="status"
@@ -45,7 +41,7 @@ export const ButtonPrimary = ({
       onClick={onHandleSubmit}
       className="bg-[#0073ea] rounded whitespace-nowrap select-none px-8 py-4 box-border outline-none w-full min-w-full h-full cursor-pointer flex justify-center items-center text-white text-base text-[18px]"
     >
-      {isLoading ? loadSpinnner() : loadButtonText()}
+      {isLoading ? loadSpinner() : loadButtonText()}
     </button>
   );
 };

@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 
-const defaultFocus =
-  'focus:outline-none focus:border-[#66afe9] focus:ring-0 focus:ring-[#66afe9]';
+const defaultFocus = 'focus:outline-none focus:border-[#66afe9] focus:ring-0 focus:ring-[#66afe9]';
 const defaultBorder = 'outline-none border-[#c3c6d4] ring-0 ring-[#c3c6d4]';
-const defaultClass =
-  'w-full h-[40px] px-4 py-2 text-[#555555] font-extralight border border-solid rounded';
+const defaultClass = 'w-full h-[40px] px-4 py-2 text-[#555555] font-extralight border border-solid rounded';
 
 export type InputEmailProps = {
   additionalCSS?: string;
@@ -24,11 +22,7 @@ export const InputEmail = ({
   const [cssClass, setCssClass] = useState('');
 
   useEffect(() => {
-    setCssClass(
-      `${defaultClass} ${defaultFocus} ${defaultBorder} ${
-        additionalCSS && additionalCSS
-      }`
-    );
+    setCssClass(`${defaultClass} ${defaultFocus} ${defaultBorder} ${additionalCSS && additionalCSS}`);
     return () => {
       setCssClass('');
     };
@@ -48,9 +42,7 @@ export const InputEmail = ({
   };
 
   const onBlurSignup = () => {
-    setCssClass(
-      `${defaultClass} ${defaultFocus} ${defaultBorder} ${additionalCSS}`
-    );
+    setCssClass(`${defaultClass} ${defaultFocus} ${defaultBorder} ${additionalCSS}`);
   };
 
   return (
@@ -61,7 +53,6 @@ export const InputEmail = ({
         type="email"
         autoComplete="email"
         placeholder={placeholderText}
-        tabIndex={0}
         onChange={handleEmailChange}
         required
         className={cssClass}
