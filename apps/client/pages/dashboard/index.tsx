@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAppSelector, useAppDispatch } from '../../redux/app.hooks';
 import { selectUser, logoutUser } from '../../redux/slices/userSlice';
-import { ButtonPrimary, Header } from '@monday/atoms';
+import { ButtonPrimary, Header } from '@monday/designs';
 
 export default function Dashboard() {
   const router = useRouter();
@@ -22,9 +22,7 @@ export default function Dashboard() {
     loggedInUser && (
       <div>
         <Header />
-        <h1 className="mt-8 text-3xl font-bold text-center">
-          Hello {loggedInUser}
-        </h1>
+        <h1 className="mt-8 text-3xl font-bold text-center">Hello {loggedInUser}</h1>
         <div className="h-12 mx-auto mt-16 w-96">
           <ButtonPrimary onHandleSubmit={handleLogout} text="Logout" />
         </div>

@@ -1,9 +1,8 @@
 import { useRouter } from 'next/router';
-import { ButtonGoogleSecondary, ErrorToast, Header, LineTextLine } from '@monday/atoms';
+import { ButtonGoogleSecondary, ErrorToast, Header, LineTextLine, TextLink } from '@monday/designs';
 import { useAppSelector, useAppDispatch } from '../../../redux/app.hooks';
 import { useEffect, useState } from 'react';
-import SigninForm from '../../../components/signin-form/signin-form';
-import { TextLink } from '@monday/molecules';
+import SigninForm from '../../../organisms/signin-form/signin-form';
 import { selectUser, getUser } from '../../../redux/slices/userSlice';
 
 const errorMessages = {

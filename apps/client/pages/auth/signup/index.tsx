@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
-import { SignupHero, SignupLoader } from '@monday/atoms';
+import { SignupHero, SignupLoader } from '@monday/designs';
 import { selectUser } from '../../../redux/slices/userSlice';
 import { useEffect, useState } from 'react';
-import SignupForm from '../../../components/signup-form/signup-form';
+import SignupForm from '../../../organisms/signup-form/signup-form';
 import { useAppSelector } from '../../../redux/app.hooks';
 
 const SignUp = () => {

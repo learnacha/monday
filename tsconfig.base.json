@@ -15,8 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@monday/atoms": ["libs/atoms/src/index.ts"],
-      "@monday/molecules": ["libs/molecules/src/index.ts"]
+      "@monday/designs": ["libs/designs/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
