@@ -4,9 +4,7 @@ import { render } from '@testing-library/react';
 import SigninForm from './signin-form';
 
 const renderComponent = (onFormSubmit = jest.fn(), isLoading = false) => {
-  return render(
-    <SigninForm onFormSubmit={onFormSubmit} isLoading={isLoading} />
-  );
+  return render(<SigninForm onFormSubmit={onFormSubmit} isLoading={isLoading} />);
 };
 
 describe('Given Signin Form', () => {
@@ -14,17 +12,11 @@ describe('Given Signin Form', () => {
     renderComponent();
 
     // heading
-    expect(
-      screen.getByRole('heading', { name: /log in to your account/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('Enter your work email address')
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /log in to your account/i })).toBeInTheDocument();
+    expect(screen.getByText('Enter your work email address')).toBeInTheDocument();
 
     // login email textbox
-    expect(
-      screen.getByPlaceholderText('Example@company.com')
-    ).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Example@company.com')).toBeInTheDocument();
 
     // login button
     expect(screen.getByRole('button', { name: /next/i })).toBeInTheDocument();

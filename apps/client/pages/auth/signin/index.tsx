@@ -1,10 +1,5 @@
 import { useRouter } from 'next/router';
-import {
-  ButtonGoogleSecondary,
-  ErrorToast,
-  Header,
-  LineTextLine,
-} from '@monday/atoms';
+import { ButtonGoogleSecondary, ErrorToast, Header, LineTextLine } from '@monday/atoms';
 import { useAppSelector, useAppDispatch } from '../../../redux/app.hooks';
 import { useEffect, useState } from 'react';
 import SigninForm from '../../../components/signin-form/signin-form';
@@ -17,15 +12,9 @@ const errorMessages = {
 };
 
 const Signin = () => {
-  const [showErrorMsg, setshowErrorMsg] = useState<
-    'INVALID_EMAIL' | 'ID_NOT_FOUND' | undefined
-  >(undefined);
+  const [showErrorMsg, setshowErrorMsg] = useState<'INVALID_EMAIL' | 'ID_NOT_FOUND' | undefined>(undefined);
   const router = useRouter();
-  const {
-    isSigninSuccess,
-    isLoading,
-    isError: hasUserError,
-  } = useAppSelector(selectUser);
+  const { isSigninSuccess, isLoading, isError: hasUserError } = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -57,12 +46,7 @@ const Signin = () => {
 
   const renderLinks = () => (
     <div className="mx-8 my-7">
-      <TextLink
-        isLight
-        text="Don't have an account yet?"
-        linkText="Sign up"
-        linkUrl="/auth/signup"
-      />
+      <TextLink isLight text="Don't have an account yet?" linkText="Sign up" linkUrl="/auth/signup" />
       <TextLink
         isLight
         text={`Can't log in?`}

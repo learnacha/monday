@@ -41,22 +41,14 @@ describe('Given Signin Page', () => {
     renderWithProviders(<Signin />);
 
     //logo
-    expect(
-      screen.getByRole('img', { name: 'Monday logo' })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Monday logo' })).toBeInTheDocument();
 
     // heading
-    expect(
-      screen.getByRole('heading', { name: /log in to your account/i })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('Enter your work email address')
-    ).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /log in to your account/i })).toBeInTheDocument();
+    expect(screen.getByText('Enter your work email address')).toBeInTheDocument();
 
     // login email textbox
-    expect(
-      screen.getByPlaceholderText('Example@company.com')
-    ).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Example@company.com')).toBeInTheDocument();
 
     // login button
     expect(screen.getByRole('button', { name: /next/i })).toBeInTheDocument();
@@ -78,9 +70,7 @@ describe('Given Signin Page', () => {
     fireEvent.click(signinButton);
 
     // Invalid email format, kindly enter the valid email address
-    const alertText = screen.getByText(
-      'Invalid email format, kindly enter the valid email address'
-    );
+    const alertText = screen.getByText('Invalid email format, kindly enter the valid email address');
     expect(alertText).toBeInTheDocument();
   });
 
@@ -97,9 +87,7 @@ describe('Given Signin Page', () => {
     fireEvent.click(signinButton);
 
     // Invalid email format, kindly enter the valid email address
-    const alertText = await screen.findByText(
-      'Email ID not found, kindly sign up to proceed'
-    );
+    const alertText = await screen.findByText('Email ID not found, kindly sign up to proceed');
     expect(alertText).toBeInTheDocument();
   });
 

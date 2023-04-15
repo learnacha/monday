@@ -8,6 +8,7 @@
     "test": "npm run test:client && npm run test:molecules && npm run test:atoms",
     "lint": "npm run lint:client  && npm run lint:atoms && npm run lint:molecules",
     "format": "npx nx format:write",
+    "e2e": "npx nx e2e client-e2e",
     "test:client": "nx test client",
     "test:molecules": "nx test molecules",
     "test:atoms": "nx test atoms",
