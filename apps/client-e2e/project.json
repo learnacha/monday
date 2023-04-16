@@ -4,16 +4,24 @@
   "projectType": "application",
   "targets": {
     "e2e": {
-      "executor": "@nrwl/cypress:cypress",
+      "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "cypressConfig": "apps/client-e2e/cypress.config.ts",
-        "devServerTarget": "client:serve:development",
-        "testingType": "e2e"
-      },
-      "configurations": {
-        "production": {
-          "devServerTarget": "client:serve:production"
-        }
+        "commands": ["playwright test"],
+        "cwd": "apps/client-e2e"
+      }
+    },
+    "debug": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["PWDEBUG=1 playwright test"],
+        "cwd": "apps/client-e2e"
+      }
+    },
+    "show-report": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": ["playwright show-report"],
+        "cwd": "apps/client-e2e"
       }
     },
     "lint": {
