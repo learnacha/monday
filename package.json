@@ -11,6 +11,7 @@
     "e2e": "npx nx e2e client-e2e",
     "e2e:debug": "npx nx debug client-e2e",
     "storybook": "nx run designs:storybook",
+    "test:coverage": "npx nx run client:test --coverage && npx nx run designs:test --coverage",
     "test:client": "nx test client",
     "test:designs": "nx test designs",
     "lint:client": "nx run client:lint",

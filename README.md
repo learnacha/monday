@@ -1,3 +1,28 @@
+# Application Screenshots
+
+## Login
+
+![Alt text](./screenshots/login.png 'Login')
+
+## Signup
+
+![Alt text](./screenshots/signup.png 'Login')
+
+## Dashboard
+
+![Alt text](./screenshots/dashboard.png 'Login')
+
+# Testing
+
+## Unit Testing
+
+![Alt text](./screenshots/ut-client.jpg 'Login')
+![Alt text](./screenshots/ut-designs.jpg 'Login')
+
+## End to end testing -- Playwright
+
+![Alt text](./screenshots/e2e.jpg 'Login')
+
 # Installation Steps
 
 1. Download the project `https://github.com/learnacha/monday.git`
@@ -23,6 +48,7 @@
 2. End to end tests -- `npm run e2e`
 3. Storybook -- `npm run storybook`
 4. lint -- `npm run lint`
+5. test coverage -- `npm run test:coverage`
    <br >
    prerequisites -- `npm install`
    <br ><br >
