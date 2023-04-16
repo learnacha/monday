@@ -1,30 +1,69 @@
 # Installation Steps
 
-1. Download the project
-2. npm install
-3. npm run start
-4. launch url at https://localhost:4200
+1. Download the project `https://github.com/learnacha/monday.git`
+2. `npm install`
+3. `npm run start`
+4. launch url at `https://localhost:4200`
+   <br ><br >
 
 # Steps to test
 
-1. Navigate to https://localhost:4200
+1. Navigate to `https://localhost:4200`
 2. The page redirects to Login page
 3. enter valid email, the page notifies the user not registered
 4. click sign up
 5. register the email id, on submit, the page redirects to login page
 6. enter the email id on sign in page
 7. view dashboard
+   <br ><br >
 
-# Whats implemented and not implemented
+# The following additional scripts can be run
 
-1. The implementation focused on the matching requirement
-2. Additional features are not implemented like responsiveness and accessibility etc
-3. The mock API are called to simulate real life api implementation however the code does not make use of it
-4. NextJS Link and Images are not implemented as they were not rendered as expected when read from component library
-5. The component follows close to Atomic design pattern
-6. The code also implements patterns like compound pattern, gaurd pattern etc.
-7. The unit test cases are written in Given, When and Then format
-8. Last but not least, the below requirements are implemented except e2e tests
+1. Unit tests -- `npm run test`
+2. End to end tests -- `npm run e2e`
+3. Storybook -- `npm run storybook`
+4. lint -- `npm run lint`
+   <br >
+   prerequisites -- `npm install`
+   <br ><br >
+
+# Static Analysis
+
+The following static analysis implemented in code:
+
+1. Typescript
+2. eslint
+3. prettier
+4. husky
+5. lint-staged
+   <br ><br >
+
+# Whats not implemented
+
+1. Features like responsiveness and accessibility etc are not implemented
+2. NextJS Link and Images are not implemented as they were not rendered as expected when read from nx design library
+3. The mock APIs are called to simulate real life API implementation however the code does not make use of it
+4. The project uses various button components on its own, this could have been improved by creating a reusable component with additional props, however the same is not implemented
+   <br ><br >
+
+# Whats implemented
+
+1. The project use nx mono repo with below structure <br >
+   repo<br >
+   -- app<br >
+   -- app -- client (auth application)<br >
+   -- libs<br >
+   -- libs -- designs (package.json publishable and reused in app)<br >
+   package.json<br >
+2. The component follows close to Atomic design pattern <br >
+   atoms and molecules are referred as smaller components under design library <br >
+   organism referred as combination of multiple elements along with atoms and molecules <br >
+3. The code also implements patterns like compound pattern, gaurd pattern etc. of react
+4. The unit test written in Given, When and Then standard to describe the test scenarios
+5. The project follows `tailwind` for styling and hence inline styling maintained in the project, the alternate approach would have been to use `styled components` along wth `tailwind`
+6. The cypress testing also implemented, the same is in `cypress` branch
+7. Last but not least, the below requirements are implemented
+   <br ><br >
 
 # Requirements
 
@@ -38,7 +77,7 @@
 - Mock the login and sign up APIs
 - Implement successful signup and login scenarios using mock
 - Implement failure login scenario using mock
-- Write unit and integration (e2e using mocks) tests -- in progress
+- Write unit and integration (e2e using mocks) tests
 - Push the code to your github account and share us the link
 
 ## Technology Stack
@@ -54,7 +93,7 @@
 - Follow monday.com design system Design System https://www.figma.com/community/file/1196675084194276928/Vibe-Desi gn-system-Ul-kit-(Community)
 - Create the components that are necessary for the login and signup pages (No need to implement all the components as in the design system)
 - Implement design system using Storybook as a separate reusable library
-- Create Storybook tests for component testing -- in progress
+- Create Storybook tests for component testing
 - Integrate design system into main project using any mono repo tools
 
 ## Testing
@@ -63,7 +102,7 @@ Create unit tests for components, screens, state, API codes
 
 - Use any unit testing frameworks
 - Create integration tests for login screen rendering, validations, API responses and navigation
-- For integration testing, use https://playwright.dev/docs/writing-tests Testing -- pending
+- For integration testing, use https://playwright.dev/docs/writing-tests Testing
 
 ## Evaluation
 
