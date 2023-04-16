@@ -34,7 +34,7 @@ The following static analysis implemented in code:
 1. Typescript
 2. eslint
 3. prettier
-4. husky
+4. husky (precommits hooks are implemented)
 5. lint-staged
    <br ><br >
 
